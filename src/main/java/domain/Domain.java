@@ -5,6 +5,9 @@ import entity.Address;
 import entity.Employee;
 import entity.Project;
 import org.hibernate.Session;
+import service.AddressService;
+import service.EmployeeService;
+import service.ProjectService;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -16,36 +19,44 @@ public class Domain {
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        session.beginTransaction();
+//        session.beginTransaction();
 
         Address address = new Address();
         address.setCountry("DC");
         address.setCity("Gotham City");
-        address.setStreet("Arkham Street 1");
-        address.setPostCode("0978");
+        address.setStreet("Arkham Street 2");
+        address.setPostCode("123456");
 
         Employee employee = new Employee();
-        employee.setFirstName("James");
-        employee.setLastName("Gprdon");
+        employee.setFirstName("Bruce");
+        employee.setLastName("Wayne");
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(1939, Calendar.MAY, 1);
+        calendar.set(1940, Calendar.FEBRUARY, 17);
 
         employee.setBirthday(new Date(calendar.getTime().getTime()));
         employee.setAddress(address);
 
         Project project = new Project();
-        project.setTitle("5678");
+        project.setTitle("Dark knight");
 
         Set<Project> projects = new HashSet<>();
-        projects.add(project);
+//        projects.add(project);
         employee.setProjects(projects);
 
-        session.save(address);
-        session.save(employee);
-        session.save(project);
+        AddressService addressService = new AddressService();
+        EmployeeService employeeService = new EmployeeService();
+        ProjectService projectService = new ProjectService();
 
-        session.getTransaction().commit();
-        HibernateUtil.shutdown();
+        addressService.add(address);
+//        employeeService.add(employee);
+//        projectService.add(project);
+
+//        session.save(address);
+//        session.save(employee);
+//        session.save(project);
+
+//        session.getTransaction().commit();
+//        HibernateUtil.shutdown();
     }
 }
