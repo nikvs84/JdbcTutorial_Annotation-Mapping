@@ -4,7 +4,6 @@ import bl.HibernateUtil;
 import entity.Address;
 import entity.Employee;
 import entity.Project;
-import org.hibernate.Session;
 import service.AddressService;
 import service.EmployeeService;
 import service.ProjectService;
@@ -17,19 +16,18 @@ import java.util.Set;
 public class Domain {
 
     public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
 //        session.beginTransaction();
 
+/*
         Address address = new Address();
         address.setCountry("DC");
-        address.setCity("Gotham City");
-        address.setStreet("Arkham Street 2");
-        address.setPostCode("123456");
+        address.setCity("Metro City");
+        address.setStreet("Street 3");
+        address.setPostCode("1234567");
 
         Employee employee = new Employee();
-        employee.setFirstName("Bruce");
-        employee.setLastName("Wayne");
+        employee.setFirstName("Clark");
+        employee.setLastName("Kent");
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(1940, Calendar.FEBRUARY, 17);
@@ -38,10 +36,10 @@ public class Domain {
         employee.setAddress(address);
 
         Project project = new Project();
-        project.setTitle("Dark knight");
+        project.setTitle("Super Man");
 
         Set<Project> projects = new HashSet<>();
-//        projects.add(project);
+        projects.add(project);
         employee.setProjects(projects);
 
         AddressService addressService = new AddressService();
@@ -49,14 +47,19 @@ public class Domain {
         ProjectService projectService = new ProjectService();
 
         addressService.add(address);
-//        employeeService.add(employee);
-//        projectService.add(project);
+        projectService.add(project);
+        employeeService.add(employee);
+*/
+
+        AddressService addressService2 = new AddressService();
+        addressService2.getAll().forEach(System.out::println);
+        System.out.println(addressService2.getById((long) 389));
 
 //        session.save(address);
 //        session.save(employee);
 //        session.save(project);
 
 //        session.getTransaction().commit();
-//        HibernateUtil.shutdown();
+        HibernateUtil.shutdown();
     }
 }

@@ -4,6 +4,8 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <!--Этот параметр может использоваться при отладке-->
         <property name="hibernate.connection.driver_class">org.h2.Driver</property>
         <property name="hibernate.connection.url">jdbc:h2:~/test_annotation_orm</property>
         <property name="hibernate.connection.username">sa</property>
@@ -14,8 +16,6 @@
         <!--create - для создания БД по маппингу, update - для работы с существующей БД.-->
         <property name="show_sql">true</property>
 
-        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-        <!--Этот параметр может использоваться при отладке-->
 
         <mapping class="entity.Address"/>
         <mapping class="entity.Employee"/>

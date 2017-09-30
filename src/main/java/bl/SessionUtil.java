@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class SessionUtil {
+
     private Session session;
     private Transaction transaction;
 
@@ -15,7 +16,7 @@ public class SessionUtil {
         return transaction;
     }
 
-    public Session openSession() {
+    protected Session openSession() {
         return HibernateUtil.getSessionFactory().openSession();
     }
 
@@ -25,7 +26,7 @@ public class SessionUtil {
         return session;
     }
 
-    public void closeSession() {
+    protected void closeSession() {
         session.close();
     }
 
